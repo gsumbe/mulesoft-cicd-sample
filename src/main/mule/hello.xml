@@ -138,13 +138,13 @@ output application/json
                 <ee:set-payload><![CDATA[%dw 2.0
 output application/json
 ---
-"Hello User error: " ++ attributes.queryParams.name]]></ee:set-payload>
+"Hello User: " ++ attributes.queryParams.name]]></ee:set-payload>
             </ee:message>
         </ee:transform>
-        <logger level="INFO" doc:name="Logger" doc:id="a4c7900f-320f-4947-92c3-3c565d0cabd5" message='#["hello flow completed successfully " ++ (now() as String)]' />
+        <logger level="INFO" doc:name="Logger" doc:id="a4c7900f-320f-4947-92c3-3c565d0cabd5" message='#["Hello flow started ::" ++ (now() as String)]' />
 		<cloudhub:create-notification doc:name="Create Notification" doc:id="f08be7b4-ada4-4a75-9cb7-7e0817e39400" config-ref="CloudHub_Config" domain="hello9" priority="WARN">
 			<cloudhub:message ><![CDATA[#["Error" ++ "In Hello Application" ++ (now() as String)]]]></cloudhub:message>
 		</cloudhub:create-notification>
-		<logger level="INFO" doc:name="Logger" doc:id="b8db03dc-02d7-4ead-8ca5-f6c94b7593c5" message="#[payload]"/>
+		<logger level="INFO" doc:name="Logger" doc:id="b8db03dc-02d7-4ead-8ca5-f6c94b7593c5" message='#["Hello flow completed ::" ++ (now() as String)]'/>
     </flow>
 </mule>
